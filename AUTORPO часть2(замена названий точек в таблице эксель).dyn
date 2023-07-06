@@ -1,0 +1,450 @@
+{
+  "Uuid": "a5bb7400-9a4c-4d91-a3a6-2ae878fc0f9f",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "AUTORPO часть2(замена названий точек в таблице эксель)",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Autodesk.Civil.DynamoNodes.CogoPointGroups, Civil3DNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "83664a77fc9d4cdf993d25e4458dbced",
+      "Inputs": [
+        {
+          "Id": "836f0621bd504788b98caa28be36d0a5",
+          "Name": "document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b7d43a0305194078a940663eecc74a74",
+          "Name": "CogoPointGroup[]",
+          "Description": "CogoPointGroup[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Выбор всех групп точек COGO в чертеже."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.AutoCAD.DynamoNodes.Document.Current",
+      "Id": "4f6f47770a0341a2ad5d65e53c5bdbf9",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c35da5b6f3a144f399976c5dbfb1aed4",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Получение текущего документа AutoCAD.\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil.DynamoNodes.CogoPoint.Name",
+      "Id": "eaafa174421a4118a69e4ad51375aa6c",
+      "Inputs": [
+        {
+          "Id": "f45b5e629e414e928eea0ab27360640e",
+          "Name": "cogoPoint",
+          "Description": "Autodesk.Civil.DynamoNodes.CogoPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bdf2bd82ff844430860b2bf7bdda4654",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Получение имени выбранных точек COGO\n\nCogoPoint.Name: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.Civil.DynamoNodes.CogoPointGroup.CogoPoints",
+      "Id": "00ac3846b114430eb3850dd1aeca3df7",
+      "Inputs": [
+        {
+          "Id": "9b4a080160e741989f957fa3a1aff890",
+          "Name": "cogoPointGroup",
+          "Description": "Autodesk.Civil.DynamoNodes.CogoPointGroup",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e85172c2357f49fb9f5a2bd6f43944c4",
+          "Name": "CogoPoint[]",
+          "Description": "CogoPoint[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Получение всех точек COGO из PointGroup.\n\nCogoPointGroup.CogoPoints: CogoPoint[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSOffice.Data.ExportExcel@string,string,int,int,var[][],bool",
+      "Id": "15e293aff0ee4148adfa831c66fc0d23",
+      "Inputs": [
+        {
+          "Id": "3977ae035d8c43f9bff9598fd9599361",
+          "Name": "filePath",
+          "Description": "Путь к файлу электронной таблицы Microsoft Excel.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0057523e62e841b0b2002a4a761d69ab",
+          "Name": "sheetName",
+          "Description": "Имя рабочего набора для записи данных.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "793bce7de8f34314ba0cdb627c5d39f6",
+          "Name": "startRow",
+          "Description": "Начальная строка для записи данных. Введите 0 для записи в строку 1, 1 — для записи в строку 2 и т. д.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e7dbeb3a710e47d6b6c21591af299497",
+          "Name": "startCol",
+          "Description": "Начальный столбец для записи данных. Введите 0 для записи в столбец A, 1 — для записи в столбец B и т. д.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7be792fa05214a598b3f09fe36a33e52",
+          "Name": "data",
+          "Description": "Данные для записи в электронную таблицу.\n\nvar[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b145974a30a44afdaf827fe6bbf00e88",
+          "Name": "overWrite",
+          "Description": "bool\nЗначение по умолчанию : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7c39a08bcae54e3ca1bbfe4aca80136b",
+          "Name": "data",
+          "Description": "Данные, записанные в электронной таблице.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Запись данных в формате электронной таблицы Microsoft Excel. Данные записываются построчно, при этом подчиненные списки записываются последовательными рядами. Значения строк и столбцов отсчитываются от нуля; например, значение в списке данных в точке [0; 0] будет записано в ячейку A1. Нулевые значения и пустые списки записывают в Excel как пустые ячейки. Для работы с этим узлом необходимо приложение Microsoft Excel.\n\nData.ExportExcel (filePath: string, sheetName: string, startRow: int, startCol: int, data: var[][], overWrite: bool = false): var[][]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "C:\\Users\\K.Zaitsev\\Desktop\\Проект Х\\Скрипты динамо\\AUTORPO\\Ведомость Точек.xlsx",
+      "InputValue": ".\\Ведомость Точек.xlsx",
+      "NodeType": "ExtensionNode",
+      "Id": "07752b07d9b64f3c94b4bc006267c54d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c58fc6123e8f455bafdc794281e6c87d",
+          "Name": "",
+          "Description": "Filename",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Позволяет выбрать файл в системе и получить его имя"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Ведомость",
+      "Id": "55dc691c68954d60bfd2618cfb69fcd7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3bb485ca52ea459da598d021c5a4d941",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание строки."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 2.0,
+      "Id": "4a0c63ef4ad14d6ea755e7349aa7781d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ecb4dc5a6db5465c92e7244ce7cd3233",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 2.0,
+      "Id": "72847484c82148c2b044405c48cb0534",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b7f658ea6245400d94952e96d5a11a02",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b7d43a0305194078a940663eecc74a74",
+      "End": "9b4a080160e741989f957fa3a1aff890",
+      "Id": "1302ea97c9af4c7284bef4f7b8445350"
+    },
+    {
+      "Start": "c35da5b6f3a144f399976c5dbfb1aed4",
+      "End": "836f0621bd504788b98caa28be36d0a5",
+      "Id": "5bed863ea2f649c19a3b4c7dde3b088b"
+    },
+    {
+      "Start": "bdf2bd82ff844430860b2bf7bdda4654",
+      "End": "7be792fa05214a598b3f09fe36a33e52",
+      "Id": "66a4a8cc25334e8499a0144858d61662"
+    },
+    {
+      "Start": "e85172c2357f49fb9f5a2bd6f43944c4",
+      "End": "f45b5e629e414e928eea0ab27360640e",
+      "Id": "d010d7be0b4d4e88a53cd64c554eb226"
+    },
+    {
+      "Start": "c58fc6123e8f455bafdc794281e6c87d",
+      "End": "3977ae035d8c43f9bff9598fd9599361",
+      "Id": "5184acf1eee34b5893178f34f3430bc2"
+    },
+    {
+      "Start": "3bb485ca52ea459da598d021c5a4d941",
+      "End": "0057523e62e841b0b2002a4a761d69ab",
+      "Id": "ff290ede36d040f39d3587a486ce9957"
+    },
+    {
+      "Start": "ecb4dc5a6db5465c92e7244ce7cd3233",
+      "End": "793bce7de8f34314ba0cdb627c5d39f6",
+      "Id": "c073b2d67855472fb5b44e6ebcc623c6"
+    },
+    {
+      "Start": "b7f658ea6245400d94952e96d5a11a02",
+      "End": "e7dbeb3a710e47d6b6c21591af299497",
+      "Id": "403c5a666b544106b07537394d299977"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [
+    {
+      "NodeId": "00ac3846-b114-430e-b385-0dd1aeca3df7",
+      "Binding": {
+        "get_CogoPoints_InClassDecl-1_InFunctionScope-1_Instance0_00ac3846-b114-430e-b385-0dd1aeca3df7": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuNC4xLjYzOTQlMkMlMjBDdWx0dXJlJTNEbmV1dHJhbCUyQyUyMFB1YmxpY0tleVRva2VuJTNEbnVsbCI+DQo8TnVtYmVyT2ZFbGVtZW50cz4xPC9OdW1iZXJPZkVsZW1lbnRzPg0KPEJhc2UtMF9IYXNEYXRhPmZhbHNlPC9CYXNlLTBfSGFzRGF0YT4NCjxCYXNlLTBfSGFzTmVzdGVkRGF0YT50cnVlPC9CYXNlLTBfSGFzTmVzdGVkRGF0YT4NCjxCYXNlLTBfTmVzdGVkRGF0YUNvdW50PjE8L0Jhc2UtMF9OZXN0ZWREYXRhQ291bnQ+DQo8QmFzZS0wLTBfSGFzRGF0YT50cnVlPC9CYXNlLTAtMF9IYXNEYXRhPg0KPEJhc2UtMC0wX0RhdGEgaWQ9InJlZi0zIj5QRk5QUVZBdFJVNVdPa1Z1ZG1Wc2IzQmxJSGh0Ykc1ek9uaHphVDBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01TOVlUVXhUWTJobGJXRXRhVzV6ZEdGdVkyVWlJSGh0Ykc1ek9uaHpaRDBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01TOVlUVXhUWTJobGJXRWlJSGh0Ykc1ek9sTlBRVkF0UlU1RFBTSm9kSFJ3T2k4dmMyTm9aVzFoY3k1NGJXeHpiMkZ3TG05eVp5OXpiMkZ3TDJWdVkyOWthVzVuTHlJZ2VHMXNibk02VTA5QlVDMUZUbFk5SW1oMGRIQTZMeTl6WTJobGJXRnpMbmh0YkhOdllYQXViM0puTDNOdllYQXZaVzUyWld4dmNHVXZJaUI0Yld4dWN6cGpiSEk5SW1oMGRIQTZMeTl6WTJobGJXRnpMbTFwWTNKdmMyOW1kQzVqYjIwdmMyOWhjQzlsYm1OdlpHbHVaeTlqYkhJdk1TNHdJaUJUVDBGUUxVVk9WanBsYm1OdlpHbHVaMU4wZVd4bFBTSm9kSFJ3T2k4dmMyTm9aVzFoY3k1NGJXeHpiMkZ3TG05eVp5OXpiMkZ3TDJWdVkyOWthVzVuTHlJK0RRbzhVMDlCVUMxRlRsWTZRbTlrZVQ0TkNqeGhNVHBUWlhKcFlXeHBlbUZpYkdWSVlXNWtiR1VnYVdROUluSmxaaTB4SWlCNGJXeHVjenBoTVQwaWFIUjBjRG92TDNOamFHVnRZWE11YldsamNtOXpiMlowTG1OdmJTOWpiSEl2Ym5OaGMzTmxiUzlCZFhSdlpHVnpheTVCZFhSdlEwRkVMa1I1Ym1GdGIwRndjQzVUWlhKMmFXTmxjeTlCWTBSNWJtRnRiMU5sY25acFkyVnpKVEpESlRJd1ZtVnljMmx2YmlVelJERXpMakl1TWpFMk1TNHdKVEpESlRJd1EzVnNkSFZ5WlNVelJHNWxkWFJ5WVd3bE1rTWxNakJRZFdKc2FXTkxaWGxVYjJ0bGJpVXpSRzUxYkd3aVBnMEtQSE4wY21sdVowbEVJR2xrUFNKeVpXWXRNeUkrTVRGRU56UThMM04wY21sdVowbEVQZzBLUEM5aE1UcFRaWEpwWVd4cGVtRmliR1ZJWVc1a2JHVStEUW84TDFOUFFWQXRSVTVXT2tKdlpIaytEUW84TDFOUFFWQXRSVTVXT2tWdWRtVnNiM0JsUGcwSzwvQmFzZS0wLTBfRGF0YT4NCjxCYXNlLTAtMF9IYXNOZXN0ZWREYXRhPmZhbHNlPC9CYXNlLTAtMF9IYXNOZXN0ZWREYXRhPg0KPC9hMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXI+DQo8L1NPQVAtRU5WOkJvZHk+DQo8L1NPQVAtRU5WOkVudmVsb3BlPg0K"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 100.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.4.1.6394",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Фоновый просмотр",
+      "EyeX": 52.610580900803129,
+      "EyeY": 107.56321571886031,
+      "EyeZ": 69.506791078074457,
+      "LookX": 54.369866943226825,
+      "LookY": -856.89962087092044,
+      "LookZ": -545.74038534754686,
+      "UpX": 0.070099117414413228,
+      "UpY": 0.70710678118655124,
+      "UpZ": -0.70362355968068657
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "CogoPointGroups",
+        "Id": "83664a77fc9d4cdf993d25e4458dbced",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2415.4129647781356,
+        "Y": 89.348816558255919
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "4f6f47770a0341a2ad5d65e53c5bdbf9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2156.0043067287083,
+        "Y": 94.630288102506427
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CogoPoint.Name",
+        "Id": "eaafa174421a4118a69e4ad51375aa6c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3094.503753701274,
+        "Y": 83.0903785198633
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CogoPointGroup.CogoPoints",
+        "Id": "00ac3846b114430eb3850dd1aeca3df7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2753.40325925895,
+        "Y": 90.041957033521612
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Data.ExportExcel",
+        "Id": "15e293aff0ee4148adfa831c66fc0d23",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3876.9461269465905,
+        "Y": -111.85056264253313
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File Path",
+        "Id": "07752b07d9b64f3c94b4bc006267c54d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3408.3386197368563,
+        "Y": -223.78970328186804
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "55dc691c68954d60bfd2618cfb69fcd7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3462.7565184772166,
+        "Y": -131.57422642951408
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "4a0c63ef4ad14d6ea755e7349aa7781d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3498.0997084001165,
+        "Y": -42.234496346624638
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "72847484c82148c2b044405c48cb0534",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3496.6505099710462,
+        "Y": 15.072204127548929
+      }
+    ],
+    "Annotations": [],
+    "X": -2227.1670943588347,
+    "Y": 377.78136931969516,
+    "Zoom": 0.785475679809516
+  }
+}
